@@ -1,8 +1,8 @@
 # Healthcare AI & Machine Learning Project
 
-This project explores the use of machine learning and large language models for healthcare prediction tasks using emergency department data.
+This repository presents selected work from my university capstone project involving machine learning and large language models for emergency department triage prediction.
 
-The project was completed as part of a university capstone project and involved data preprocessing, model development, evaluation, and comparison between traditional machine learning models and large language models.
+The project focused on predicting triage acuity using information available early in a patient's emergency department visit, including chief complaints, vital signs and basic demographic information.
 
 ## My Contribution
 
@@ -10,12 +10,12 @@ My main contributions included:
 
 - Data cleaning and preprocessing using Python and Pandas
 - Developing a complaint-only Logistic Regression baseline
-- Training and evaluating Logistic Regression, Decision Tree, Random Forest and XGBoost models
-- Hyperparameter tuning for XGBoost
-- Evaluating under-triage and over-triage performance
-- Developing and testing LLM-based prediction workflows
-- Comparing machine learning and LLM performance
-- Working collaboratively using Git and GitHub
+- Reproducing and evaluating multiple machine learning models
+- Training and tuning an XGBoost model
+- Evaluating model performance using accuracy, F1 score, confusion matrices, under-triage and over-triage
+- Designing and testing an LLM-based triage prediction workflow
+- Comparing traditional machine learning models with LLM predictions
+- Collaborating with team members using Git and GitHub
 
 ## Technologies
 
@@ -29,59 +29,45 @@ My main contributions included:
 - Git / GitHub
 - Large Language Models
 
-## Task 1 – Emergency Triage Prediction
+## Machine Learning Results
 
-The first task involved predicting emergency department triage acuity levels using information available early in the patient journey.
+A complaint-only Logistic Regression model was used as the baseline.
 
-Features included:
+- Baseline accuracy: **68.54%**
 
-- Chief complaint
-- Detailed chief complaint
-- Temperature
-- Heart rate
-- Respiratory rate
-- Oxygen saturation
-- Blood pressure
-- Gender
-- Arrival transport
+After adding additional clinical features and tuning the model, the tuned XGBoost model achieved:
 
-The final classification task predicted acuity levels 1–4.
+- Accuracy: **72.12%**
+- Macro F1: **0.5271**
+- Weighted F1: **0.7197**
+- Under-triage rate: **20.5%**
+- Over-triage rate: **29.8%**
 
-### Results
+## LLM Evaluation
 
-The complaint-only Logistic Regression baseline achieved approximately:
+Large language models were also tested using a zero-shot prompting approach.
 
-- Accuracy: 68.5%
+For triage prediction:
 
-The tuned XGBoost model achieved approximately:
+- GPT accuracy: **43.54%**
+- GPT under-triage rate: **11.22%**
+- GPT over-triage rate: **57.66%**
 
-- Accuracy: 72.1%
-- Macro F1: 0.53
-- Weighted F1: 0.72
-- Under-triage rate: 20.5%
-- Over-triage rate: 29.8%
+The results showed that the LLM behaved more conservatively than the machine learning model, producing lower under-triage but substantially higher over-triage.
 
-## Task 2 – LLM Evaluation
+## Visual Results
 
-Large language models were also evaluated using clinical text and early vital signs.
+### GPT vs Tuned XGBoost
 
-The purpose of this experiment was not to deploy an LLM as a clinical decision-making system, but to compare its behaviour with traditional machine learning approaches.
+![GPT vs Tuned XGBoost](images/GPT%20vs%20Tuned%20XGBoost.png)
 
-The results showed that LLMs could behave conservatively and produce high over-triage rates, highlighting limitations in using zero-shot LLMs as standalone clinical predictors.
+Additional confusion matrices and evaluation figures are available in the `images` folder.
 
-## Key Learning
+## Repository Structure
 
-This project gave me practical experience in:
+```text
+images/
+    Model comparison figures and confusion matrices
 
-- Building end-to-end machine learning workflows
-- Working with imbalanced datasets
-- Evaluating models beyond accuracy
-- Understanding the importance of safety-related metrics
-- Comparing traditional ML methods with LLM-based approaches
-- Working with real-world healthcare-style data
-
-## Important Note
-
-This repository is a portfolio version of a university team project.
-
-It contains only material that I am permitted to share publicly and focuses on my own contribution. Sensitive, private, or restricted project data is not included.
+notebooks/
+    Jupyter notebooks for machine learning reproduction and LLM experiments
